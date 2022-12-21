@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.1",
     "@next/font": "13.0.7",
+    "alchemy-sdk": "^2.2.5",
     "eslint": "8.30.0",
     "eslint-config-next": "13.0.7",
+    "ethers": "^5.7.2",
     "next": "13.0.7",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "wagmi": "^0.9.4"
   }
 }
