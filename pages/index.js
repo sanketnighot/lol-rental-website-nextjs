@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
 import HomePage from '../Components/HomePage'
-import { WagmiConfig, createClient, configureChains, goerli } from 'wagmi'
+import { WagmiConfig, createClient, configureChains, goerli, mainnet } from 'wagmi'
 import { getDefaultProvider } from 'ethers'
 import { alchemyProvider } from 'wagmi/providers/alchemy'
 import { publicProvider } from 'wagmi/providers/public'
@@ -16,7 +16,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 // Configure chains & providers with the Alchemy provider.
 // Two popular providers are Alchemy (alchemy.com) and Infura (infura.io)
 const { chains, provider, webSocketProvider } = configureChains(
-  [goerli],
+  [mainnet],
   [publicProvider()],
 )
  

@@ -50,6 +50,42 @@ export const land_abi = [
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenId",
+				"type": "uint256"
+			}
+		],
+		"name": "approve",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_landOwner",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "_status",
+				"type": "bool"
+			}
+		],
+		"name": "blackListAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -67,6 +103,39 @@ export const land_abi = [
 		],
 		"name": "Blacklisted",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_beneficiary",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "x",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "y",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_categories",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_uri",
+				"type": "string"
+			}
+		],
+		"name": "createLand",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -100,6 +169,29 @@ export const land_abi = [
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "_symbol",
+				"type": "string"
+			}
+		],
+		"name": "initialize",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -111,6 +203,13 @@ export const land_abi = [
 		],
 		"name": "Initialized",
 		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "pause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -145,6 +244,88 @@ export const land_abi = [
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_landId",
+				"type": "uint256"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_landId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "data",
+				"type": "bytes"
+			}
+		],
+		"name": "safeTransferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "operator",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "approved",
+				"type": "bool"
+			}
+		],
+		"name": "setApprovalForAll",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_landSale",
+				"type": "address"
+			}
+		],
+		"name": "setLandSale",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -168,6 +349,52 @@ export const land_abi = [
 		],
 		"name": "Transfer",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_landId",
+				"type": "uint256"
+			}
+		],
+		"name": "transferFrom",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "x",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "y",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "transferLand",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -201,6 +428,29 @@ export const land_abi = [
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "x",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "y",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "transferManyLand",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -232,6 +482,13 @@ export const land_abi = [
 		"type": "event"
 	},
 	{
+		"inputs": [],
+		"name": "unpaused",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -243,6 +500,37 @@ export const land_abi = [
 		],
 		"name": "Unpaused",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "updatedPlatformOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_landId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "_tokenURI",
+				"type": "string"
+			}
+		],
+		"name": "updateLandData",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -268,6 +556,29 @@ export const land_abi = [
 		],
 		"name": "UpdateLandData",
 		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "x",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "y",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_tokenURI",
+				"type": "string[]"
+			}
+		],
+		"name": "updateManyLandData",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -301,6 +612,24 @@ export const land_abi = [
 		"type": "event"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "_landId",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_tokenURI",
+				"type": "string[]"
+			}
+		],
+		"name": "updateMultipleLandData",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -329,24 +658,6 @@ export const land_abi = [
 		"inputs": [
 			{
 				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "tokenId",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
 				"name": "owner",
 				"type": "address"
 			}
@@ -360,57 +671,6 @@ export const land_abi = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_landOwner",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "_status",
-				"type": "bool"
-			}
-		],
-		"name": "blackListAddress",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_beneficiary",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "x",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "y",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_categories",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_uri",
-				"type": "string"
-			}
-		],
-		"name": "createLand",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -483,24 +743,25 @@ export const land_abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
+				"internalType": "uint256",
+				"name": "x",
+				"type": "uint256"
 			},
 			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "_symbol",
-				"type": "string"
+				"internalType": "uint256",
+				"name": "y",
+				"type": "uint256"
 			}
 		],
-		"name": "initialize",
-		"outputs": [],
-		"stateMutability": "nonpayable",
+		"name": "getTokenId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -671,13 +932,6 @@ export const land_abi = [
 	},
 	{
 		"inputs": [],
-		"name": "pause",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
 		"name": "paused",
 		"outputs": [
 			{
@@ -687,88 +941,6 @@ export const land_abi = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_landId",
-				"type": "uint256"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_landId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "safeTransferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "operator",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "approved",
-				"type": "bool"
-			}
-		],
-		"name": "setApprovalForAll",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_landSale",
-				"type": "address"
-			}
-		],
-		"name": "setLandSale",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -820,154 +992,6 @@ export const land_abi = [
 			}
 		],
 		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_landId",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "x",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "y",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "transferLand",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "x",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "y",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "transferManyLand",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "unpaused",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_landId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "_tokenURI",
-				"type": "string"
-			}
-		],
-		"name": "updateLandData",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "x",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "y",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "string[]",
-				"name": "_tokenURI",
-				"type": "string[]"
-			}
-		],
-		"name": "updateManyLandData",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "_landId",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "string[]",
-				"name": "_tokenURI",
-				"type": "string[]"
-			}
-		],
-		"name": "updateMultipleLandData",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "updatedPlatformOwner",
-		"outputs": [],
-		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -2059,43 +2083,6 @@ export const rental_abi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "value",
-				"type": "bool"
-			}
-		],
-		"name": "blacklistMalicious",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_rewardId",
-				"type": "uint256"
-			}
-		],
-		"name": "claimRewards",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "rewards",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -2139,74 +2126,6 @@ export const rental_abi = [
 		"type": "event"
 	},
 	{
-		"inputs": [
-			{
-				"internalType": "uint256[]",
-				"name": "_landId",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_lordId",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "_landCatorgy",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_lordCatory",
-				"type": "uint256"
-			}
-		],
-		"name": "depositLandLords",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "emergencyWithdraw",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_landContract",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_lordContract",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "_landWeight",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "_lordWeight",
-				"type": "uint256[]"
-			}
-		],
-		"name": "initialize",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -2231,109 +2150,6 @@ export const rental_abi = [
 		],
 		"name": "Pausable",
 		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bool",
-				"name": "_state",
-				"type": "bool"
-			}
-		],
-		"name": "pause",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_landContract",
-				"type": "address"
-			}
-		],
-		"name": "setLandContract",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_basicLandWeight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_platniumLandWeight",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_primeLandWeight",
-				"type": "uint256"
-			}
-		],
-		"name": "setLandWeight",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_lordContract",
-				"type": "address"
-			}
-		],
-		"name": "setLordContract",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "_owner",
-				"type": "address"
-			}
-		],
-		"name": "setOwner",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_poolTimeSlot",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_poolRoyalty",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256[]",
-				"name": "_poolTotalWeight",
-				"type": "uint256[]"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_poolMonth",
-				"type": "uint256"
-			}
-		],
-		"name": "setPool",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -2427,19 +2243,6 @@ export const rental_abi = [
 		"inputs": [
 			{
 				"internalType": "uint256",
-				"name": "_rewardId",
-				"type": "uint256"
-			}
-		],
-		"name": "withdrawLandLords",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
 				"name": "_poolId",
 				"type": "uint256"
 			}
@@ -2493,6 +2296,43 @@ export const rental_abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "bool",
+				"name": "value",
+				"type": "bool"
+			}
+		],
+		"name": "blacklistMalicious",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_rewardId",
+				"type": "uint256"
+			}
+		],
+		"name": "claimRewards",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "rewards",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "currentPoolId",
 		"outputs": [
@@ -2521,25 +2361,85 @@ export const rental_abi = [
 	{
 		"inputs": [
 			{
-				"internalType": "uint256",
-				"name": "_rewardId",
-				"type": "uint256"
-			}
-		],
-		"name": "getcalculateRewards",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"components": [
+					{
+						"internalType": "uint256[]",
+						"name": "_landId",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lordId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_landCatorgy",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_lordCatory",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct IRental.Deposite",
+				"name": "deposite",
+				"type": "tuple"
 			},
 			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
+				"components": [
+					{
+						"internalType": "uint256[]",
+						"name": "land1",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "land2",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "land3",
+						"type": "uint256[]"
+					}
+				],
+				"internalType": "struct IRental.corrdinate",
+				"name": "cordinate",
+				"type": "tuple"
+			},
+			{
+				"internalType": "bytes32[]",
+				"name": "_merkleProofland1",
+				"type": "bytes32[]"
+			},
+			{
+				"internalType": "bytes32[]",
+				"name": "_merkleProofland2",
+				"type": "bytes32[]"
+			},
+			{
+				"internalType": "bytes32[]",
+				"name": "_merkleProofland3",
+				"type": "bytes32[]"
+			},
+			{
+				"internalType": "bytes32[]",
+				"name": "_merkleProoflord",
+				"type": "bytes32[]"
 			}
 		],
-		"stateMutability": "view",
+		"name": "depositLandLords",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "emergencyWithdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -2613,7 +2513,7 @@ export const rental_abi = [
 						"type": "bool"
 					}
 				],
-				"internalType": "struct Rental.LandLords",
+				"internalType": "struct IRental.LandLords",
 				"name": "",
 				"type": "tuple"
 			}
@@ -2664,7 +2564,7 @@ export const rental_abi = [
 						"type": "uint256"
 					}
 				],
-				"internalType": "struct Rental.Pool",
+				"internalType": "struct IRental.Pool",
 				"name": "",
 				"type": "tuple"
 			}
@@ -2718,6 +2618,73 @@ export const rental_abi = [
 	{
 		"inputs": [
 			{
+				"internalType": "uint256",
+				"name": "_rewardId",
+				"type": "uint256"
+			}
+		],
+		"name": "getcalculateRewards",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_landContract",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_lordContract",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_rootLand",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_rootLord",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_landWeight",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_lordWeight",
+				"type": "uint256[]"
+			}
+		],
+		"name": "initialize",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
 				"internalType": "address",
 				"name": "",
 				"type": "address"
@@ -2729,6 +2696,70 @@ export const rental_abi = [
 				"internalType": "bool",
 				"name": "",
 				"type": "bool"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "landContract",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "landWeight",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "lordContract",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "lordWeight",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"stateMutability": "view",
@@ -2782,6 +2813,19 @@ export const rental_abi = [
 		"type": "function"
 	},
 	{
+		"inputs": [
+			{
+				"internalType": "bool",
+				"name": "_state",
+				"type": "bool"
+			}
+		],
+		"name": "pause",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"inputs": [],
 		"name": "paused",
 		"outputs": [
@@ -2796,6 +2840,161 @@ export const rental_abi = [
 	},
 	{
 		"inputs": [],
+		"name": "rewardId",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_value",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "rootLand",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "rootLord",
+		"outputs": [
+			{
+				"internalType": "bytes32",
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_landContract",
+				"type": "address"
+			}
+		],
+		"name": "setLandContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_basicLandWeight",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_platniumLandWeight",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_primeLandWeight",
+				"type": "uint256"
+			}
+		],
+		"name": "setLandWeight",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_lordContract",
+				"type": "address"
+			}
+		],
+		"name": "setLordContract",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "setOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_poolTimeSlot",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_poolRoyalty",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_poolTotalWeight",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_poolMonth",
+				"type": "uint256"
+			}
+		],
+		"name": "setPool",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_rootLand",
+				"type": "bytes32"
+			}
+		],
+		"name": "setRootLand",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_rootLord",
+				"type": "bytes32"
+			}
+		],
+		"name": "setRootLord",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
 		"name": "totalLandWeights",
 		"outputs": [
 			{
@@ -2805,6 +3004,19 @@ export const rental_abi = [
 			}
 		],
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_rewardId",
+				"type": "uint256"
+			}
+		],
+		"name": "withdrawLandLords",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	}
 ]
