@@ -308,6 +308,7 @@ const HomePage = () => {
 
     const handleUnstake = async (id) => {
         handleToggle()
+        if (confirm("Make sure you have colleted your reward before you unstake!") == true) {
         let owner = await rentalContract.withdrawLandLords(id).catch((err)=>{
             handleClose()
             alert(err.message)
@@ -325,6 +326,9 @@ const HomePage = () => {
             handleClose()
             return console.log(err)
         })
+    } else {
+        console.log(false)
+        }
         
     };
 
