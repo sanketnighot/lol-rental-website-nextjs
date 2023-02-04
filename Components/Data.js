@@ -5,6 +5,11 @@ const config = {
 	apiKey: "4Yu3Crvr9V7owxJ-msc99y94RTQjKEB-",
 	network: Network.ETH_MAINNET,
 };
+
+// const config = {
+//     apiKey: "WYMOWU7-dcSmZGlHOMwdgJHm8-MpyMx6",
+//     network: Network.ETH_GOERLI,
+// };
 const alchemy = new Alchemy(config);
 
 export const getNFTs = async (address) => {

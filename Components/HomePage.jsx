@@ -17,7 +17,11 @@ import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
 import Chip from '@mui/material/Chip';
 import { landMerkle, lordMerkle } from './Utils/Merkleproof';
+import axios from 'axios';
 import { M_PLUS_1 } from '@next/font/google';
+import { BigNumber, ethers } from "ethers";
+
+// import Web3 from 'web3';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode !== 'dark' ? '#1A2027' : '#fff',
@@ -27,9 +31,15 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
+// Mainnet
 export const landContractAddress = "0x339f39f2c458fb9b0053e3116e00b1f2b607ba31";
 export const lordContractAddress = "0x163ccc9719139c2e0b7543738e7f0de67bba75d5";
 export const rentalContractAddress = "0xca63b89db5a634ad465927ff63e0fd1495928e23";
+
+// Goriel Testnet
+// export const landContractAddress = "0x48b72b72fa3ad813362ee178c58ab59c33d8572a";
+// export const lordContractAddress = "0x3373d30f1338467bf1f68b480de77d07c34c82f3";
+// export const rentalContractAddress = "0x3426042A6eb767493551ECA9Bfe8f3AC85712Bfb";
 
 const HomePage = () => {
     const [domLoaded, setDomLoaded] = useState(false);
@@ -104,7 +114,7 @@ const HomePage = () => {
             ))}
             </>
         );
-        };
+    };
 
     const disconnectWalletButton = () => {
     return (
@@ -333,21 +343,33 @@ const HomePage = () => {
     };
 
     const handleClaimRewards = async (id) => {
-        handleToggle()
-        let owner = await rentalContract.claimRewards(id).catch((err)=>{
-            handleClose()
-            alert(err.message)
-            return console.log(err)
-        })
+        var claimRwd = await axios.get(`https://rental-api.lordsofthelands.io/api/getRewards?rewardId=${id}`)
+        const claimableRwd = claimRwd.data.rewardAmount
+        const claimed = claimRwd.data.claimed
+        if (!claimed) {
+            handleToggle()
+            var claimRwd = await axios.post(`https://rental-api.lordsofthelands.io/api/getMerkleProof`, {rewardId: id})
+            const reward = `${claimableRwd*1000000000000000000}`
+            console.log(reward)
+            let owner = await rentalContract.claimRewards(id, claimRwd.data, reward).catch((err)=>{
+                handleClose()
+                alert(err.message)
+                return console.log(err)
+            })
 
-        await owner?.wait(1).then(()=>{
-            handleClose()
-            return alert( "Rewards Claimed")
-        }).catch((err)=>{
-            handleClose()
-            alert(err.message)
-            return console.log(err)
-        })
+            await owner?.wait(1).then(async ()=>{
+                handleClose()
+                var claimRwd = await axios.post(`https://rental-api.lordsofthelands.io/api/claimRewards`, {rewardId: id})
+                return alert( "Rewards Claimed")
+            }).catch((err)=>{
+                handleClose()
+                alert(err.message)
+                return console.log(err)
+            })
+        } else {
+            alert('You have already Claimed the Rewards')
+        }
+        
     };
 
     const LandLordComp = (props) => {
@@ -365,8 +387,16 @@ const HomePage = () => {
                 {(props.item.landId).join()}
             </div>
             <div style={{backgroundColor:"transparent", color:"white"}}>
+                <b>Total Reward</b><br/>
+                {(props.item.totalRwd)}
+            </div>
+            <div style={{backgroundColor:"transparent", color:"white"}}>
                 <Button style={{margin:"1%"}} color="error" fullWidth variant="contained" onClick={()=>{handleUnstake(props.item.rewardId)}}>UnStake</Button>
+                {(props.item.claimed === true)?
+                <Button style={{margin:"1%"}} color="secondary" fullWidth variant="contained">Claim 0 ETH</Button> :
                 <Button style={{margin:"1%"}} color="success" fullWidth variant="contained" onClick={()=>{handleClaimRewards(props.item.rewardId)}}>Claim {(props.item.claimRwd)} ETH</Button>
+                }
+                
             </div>
             </Stack>
         </Item>
@@ -400,9 +430,8 @@ const HomePage = () => {
         var lld = await rentalContract.getLandLordsInfo(ll).catch((err)=>{
                 return console.log(err)
             })
-        var claimRwd = await rentalContract.getcalculateRewards(ll).catch((err)=>{
-                return console.log(err)
-            })
+        var claimRwd = await axios.get(`https://rental-api.lordsofthelands.io/api/getRewards?rewardId=${ll}`)
+        var claimTotalRwd = await axios.get(`https://rental-api.lordsofthelands.io/api/getTotalRewards?rewardId=${ll}`)
         
         if(landLord.some(ll => ll.lordId !== lld.lordId)){
             return
@@ -410,7 +439,9 @@ const HomePage = () => {
             let asd = Object.assign({selected: false}, lld);
             // console.log(claimRwd)
             asd.rewardId = ll
-            asd.claimRwd = (Number(claimRwd[0])/1000000000000000000).toFixed(18)
+            asd.claimRwd = (claimRwd.data.rewardAmount)
+            asd.totalRwd = (claimTotalRwd.data.rewardAmount)
+            asd.claimed = (claimRwd.data.claimed)
             // asd.claimRwd = 0
             // console.log(asd)
             lalo.push(asd)
@@ -422,7 +453,7 @@ const HomePage = () => {
         setOwnLand(ownedNft[0]);
         setOwnLord(ownedNft[1]);
         }
-    }, 1000);
+    }, 2000);
     return () => clearInterval(interval);}
     );
   
@@ -479,10 +510,11 @@ const HomePage = () => {
                             {ownland.map((item, index)=>{
                             if (land.includes((item.tokenId))) {
                                 return <h2 style={{margin:'2%', padding:'1%', color:'lightGreen', cursor: 'pointer', textAlign:"left"}} key={index} onClick={()=>{handleLandChange((item.tokenId), (item.rawMetadata.attributes[0].value).toUpperCase())}}>Land #{item.tokenId} &nbsp;
-                                <Chip size="small" color="success" label={(item.rawMetadata.attributes[0].value).toUpperCase()}/></h2>
+                                <Chip size="small" color="success" label={(item.rawMetadata.attributes[0]?.value)?.toUpperCase()}/></h2>
                             } else {
                                 return <h3 style={{margin:'2%', padding:'1%', color:'#fff', cursor: 'pointer', textAlign:"left"}} key={index} onClick={()=>{handleLandChange((item.tokenId), (item.rawMetadata.attributes[0].value).toUpperCase())}}>Land #{item.tokenId} &nbsp;
-                                <Chip size="small" style={{color:"#fff"}} label={(item.rawMetadata.attributes[0].value).toUpperCase()} variant="outlined" /></h3>
+                                <Chip size="small" style={{color:"#fff"}} label={(item.rawMetadata.attributes[0]?.value)?.toUpperCase()} variant="outlined" />
+                                </h3>
                             }
                                 
                             })
