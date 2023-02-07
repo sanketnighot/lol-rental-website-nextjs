@@ -349,7 +349,7 @@ const HomePage = () => {
         if (!claimed) {
             handleToggle()
             var claimRwd = await axios.post(`https://rental-api.lordsofthelands.io/api/getMerkleProof`, {rewardId: id})
-            const reward = `${claimableRwd*1000000000000000000}`
+            const reward = claimableRwd
             console.log(reward)
             let owner = await rentalContract.claimRewards(id, claimRwd.data, reward).catch((err)=>{
                 handleClose()
@@ -386,15 +386,15 @@ const HomePage = () => {
                 <b>Land ID</b><br/>
                 {(props.item.landId).join()}
             </div>
-            <div style={{backgroundColor:"transparent", color:"white"}}>
+            {/* <div style={{backgroundColor:"transparent", color:"white"}}>
                 <b>Total Reward</b><br/>
                 {(props.item.totalRwd)}
-            </div>
+            </div> */}
             <div style={{backgroundColor:"transparent", color:"white"}}>
                 <Button style={{margin:"1%"}} color="error" fullWidth variant="contained" onClick={()=>{handleUnstake(props.item.rewardId)}}>UnStake</Button>
                 {(props.item.claimed === true)?
-                <Button style={{margin:"1%"}} color="secondary" fullWidth variant="contained">Claim 0 ETH</Button> :
-                <Button style={{margin:"1%"}} color="success" fullWidth variant="contained" onClick={()=>{handleClaimRewards(props.item.rewardId)}}>Claim {(props.item.claimRwd)} ETH</Button>
+                <Button style={{margin:"1%"}} color="secondary" fullWidth variant="contained">Already Clamied</Button> :
+                <Button style={{margin:"1%"}} color="success" fullWidth variant="contained" onClick={()=>{handleClaimRewards(props.item.rewardId)}}>Claim {(props.item.claimRwd / 1000000000000000000)} ETH</Button>
                 }
                 
             </div>
