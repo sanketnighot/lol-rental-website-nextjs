@@ -485,8 +485,14 @@ const HomePage = () => {
                         <br/>
                         </Item> 
                     </Grid>: <></>}
+                    <Grid item sm={10}>
+                        <Item style={{backgroundColor:"#041E2F", color:"#ffffff"}}>
+                        <h3>This is version 1 of Lords of the Lands Staking. Staking LandLords is stopped here. You can only claim previous rewards if you have earned any and unstake the Landlords as this will soon get deprecated.</h3>
+                        <h4>You can find the version 2 of Lords of the Lands <a href="https://v2.rental.lordsofthelands.io/" style={{color: 'red'}}>here</a></h4>
+                        </Item> 
+                    </Grid>
 
-                    <Grid item sm={5}>
+                    {/* <Grid item sm={5}>
                         <Item style={{backgroundColor:"#041E2F"}}>
                         <Image src={Lord} alt="Picture of the author" width={100}/>
                         <h1 style={{color:"#fff"}}>Lords You Own</h1>
@@ -520,9 +526,11 @@ const HomePage = () => {
                             })
                             }
                         </Item>
-                    </Grid> <br/>
+                    </Grid>  */}
 
-                    <Grid item sm={5}>
+                    <br/>
+
+                    {/* <Grid item sm={5}>
                         <div style={{backgroundColor:"transparent"}}>
                             {(landApproved === false && landApproved === false) ? <Button fullWidth variant="contained" 
                             onClick={()=>{
@@ -530,7 +538,7 @@ const HomePage = () => {
                             else if(land === '' && lord === ''){alert("Enter Land and Lord to Stake")};
                             }}>Stake</Button> : <Button color="success" fullWidth variant="contained" onClick={()=>{handleStake();}}>Stake</Button>}
                         </div>
-                    </Grid><br/>           
+                    </Grid><br/>            */}
                     
                     {landLord.map((item, index) => {
                         return <LandLordComp item={item} key={index}/>
