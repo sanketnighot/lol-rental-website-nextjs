@@ -392,10 +392,11 @@ const HomePage = () => {
             </div> */}
             <div style={{backgroundColor:"transparent", color:"white"}}>
                 <Button style={{margin:"1%"}} color="error" fullWidth variant="contained" onClick={()=>{handleUnstake(props.item.rewardId)}}>UnStake</Button>
-                {(props.item.claimed === true)?
+                {/* {(props.item.claimed === true)?
                 <Button style={{margin:"1%"}} color="secondary" fullWidth variant="contained">Already Clamied</Button> :
                 <Button style={{margin:"1%"}} color="success" fullWidth variant="contained" onClick={()=>{handleClaimRewards(props.item.rewardId)}}>Claim {(props.item.claimRwd / 1000000000000000000)} ETH</Button>
-                }
+                } */}
+                <h3>Claim function is finally gonna be live in few hours!</h3>
                 
             </div>
             </Stack>
