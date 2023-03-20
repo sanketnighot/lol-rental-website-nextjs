@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import {Button, Typography} from '@mui/material';
 import { useAccount, useContract, useSigner, useNetwork, useConnect, useDisconnect, useSwitchNetwork } from 'wagmi'
-import { rental_abi, land_abi, lord_abi } from "../Contracts/abi";
+import { rental_abi, land_abi, lord_abi, claim_abi } from "../Contracts/abi";
 import Logo from '../Images/logo.png'
 import Land from '../Images/land.png'
 import Lord from '../Images/lord.jpg'
@@ -35,7 +35,7 @@ const Item = styled(Paper)(({ theme }) => ({
 export const landContractAddress = "0x339f39f2c458fb9b0053e3116e00b1f2b607ba31";
 export const lordContractAddress = "0x163ccc9719139c2e0b7543738e7f0de67bba75d5";
 export const rentalContractAddress = "0xca63b89db5a634ad465927ff63e0fd1495928e23";
-
+export const claimContractAddress = "0x59a06cb545ac15364b849efe6e7b897b9f66e494";
 // Goriel Testnet
 // export const landContractAddress = "0x48b72b72fa3ad813362ee178c58ab59c33d8572a";
 // export const lordContractAddress = "0x3373d30f1338467bf1f68b480de77d07c34c82f3";
@@ -62,23 +62,29 @@ const HomePage = () => {
     const [open, setOpen] = useState(false);
 
     const landContract = useContract({
-    address: landContractAddress,
-    abi: land_abi,
-    signerOrProvider: signer,
+        address: landContractAddress,
+        abi: land_abi,
+        signerOrProvider: signer,
     });
 
     const lordContract = useContract({
-    address: lordContractAddress,
-    abi: lord_abi,
-    signerOrProvider: signer,
+        address: lordContractAddress,
+        abi: lord_abi,
+        signerOrProvider: signer,
     });
 
     const rentalContract = useContract({
-    address: rentalContractAddress,
-    abi: rental_abi,
-    signerOrProvider: signer,
+        address: rentalContractAddress,
+        abi: rental_abi,
+        signerOrProvider: signer,
     });
-
+    
+    const claimContract = useContract({
+        address: claimContractAddress,
+        abi: claim_abi,
+        signerOrProvider: signer,
+        });
+            
     const handleClose = () => {
         setOpen(false);
     };
@@ -351,7 +357,7 @@ const HomePage = () => {
             var claimRwd = await axios.post(`https://rental-api.lordsofthelands.io/api/getMerkleProof`, {rewardId: id})
             const reward = claimableRwd
             console.log(reward)
-            let owner = await rentalContract.claimRewards(id, claimRwd.data, reward).catch((err)=>{
+            let owner = await claimContract.claimRewards(id, claimRwd.data, reward).catch((err)=>{
                 handleClose()
                 alert(err.message)
                 return console.log(err)
@@ -392,11 +398,10 @@ const HomePage = () => {
             </div> */}
             <div style={{backgroundColor:"transparent", color:"white"}}>
                 <Button style={{margin:"1%"}} color="error" fullWidth variant="contained" onClick={()=>{handleUnstake(props.item.rewardId)}}>UnStake</Button>
-                {/* {(props.item.claimed === true)?
+                {(props.item.claimed === true)?
                 <Button style={{margin:"1%"}} color="secondary" fullWidth variant="contained">Already Clamied</Button> :
                 <Button style={{margin:"1%"}} color="success" fullWidth variant="contained" onClick={()=>{handleClaimRewards(props.item.rewardId)}}>Claim {(props.item.claimRwd / 1000000000000000000)} ETH</Button>
-                } */}
-                <h3>Claim function is finally gonna be live in few hours!</h3>
+                }
                 
             </div>
             </Stack>
